@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Un-Professional Software Development in 2019',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `Be Mean`,
+
+    secondParagraph: `say have a bad day`,
+
+    thirdParagraph: `through your computer across the hall `
   }
 ];
 
@@ -112,3 +121,65 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+class Article {
+  constructor(articleElement){
+    this.article = articleElement;
+    this.expandButton = articleElement.querySelector(".expandButton");
+
+    this.expandButton.addEventListener("click", this.expandToggle.bind(this));
+  }
+
+  expandToggle(){
+    this.article.classList.toggle("article-open");
+  }
+
+}
+
+function createArticle(obj) {
+  var div = document.createElement("div");
+  div.classList.add("article");
+
+  var h2Node = document.createElement("h2");
+  var h2Text = document.createTextNode(obj.title);
+  h2Node.appendChild(h2Text);
+
+  var dateNode = document.createElement("p");
+  dateNode.classList.add("date");
+  var dateText = document.createTextNode(obj.date);
+  dateNode.appendChild(dateText);
+
+  var p1 = document.createElement("p");
+  var p1Text = document.createTextNode(obj.firstParagraph);
+  p1.appendChild(p1Text);
+
+  var p2 = document.createElement("p");
+  var p2Text = document.createTextNode(obj.secondParagraph);
+  p2.appendChild(p2Text);
+
+  var p3 = document.createElement("p");
+  var p3Text = document.createTextNode(obj.thirdParagraph);
+  p3.appendChild(p3Text);
+
+  var button = document.createElement("button");
+  button.classList.add("expandButton");
+  var buttonText = document.createTextNode("expand");
+  button.appendChild(buttonText);
+
+
+  div.appendChild(h2Node);
+  div.appendChild(dateNode);
+  div.appendChild(p1);
+  div.appendChild(p2);
+  div.appendChild(p3);
+  div.appendChild(button);
+
+  content.appendChild(div);
+
+  return div;
+}
+
+let content = document.querySelector(".articles");
+
+data.forEach((element) => {
+  new Article(createArticle(element));
+});
