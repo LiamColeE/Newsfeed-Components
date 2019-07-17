@@ -131,6 +131,13 @@ class Article {
 
   expandToggle(){
     this.article.classList.toggle("article-open");
+
+    if(this.article.classList.contains("article-open")){
+      this.expandButton.innerText = "Close"
+    }
+    else{
+      this.expandButton.innerText = "Expand"
+    }
   }
 
 }
@@ -162,7 +169,7 @@ function createArticle(obj) {
 
   var button = document.createElement("button");
   button.classList.add("expandButton");
-  var buttonText = document.createTextNode("expand");
+  var buttonText = document.createTextNode("Expand");
   button.appendChild(buttonText);
 
 
